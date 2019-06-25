@@ -1,0 +1,16 @@
+﻿<Window x:Class="blogTrace.Blog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:blogTrace"
+        mc:Ignorable="d"
+        Title="Данные" Height="450" Width="800" Icon="logo.ico" Loaded="Window_Loaded" Closed="Window_Closed">
+    <DockPanel HorizontalAlignment="Left" Height="419" VerticalAlignment="Top" Width="790" LastChildFill="True">
+        <StackPanel DockPanel.Dock="top" HorizontalAlignment="Left">
+            <Button Content="Добавить" FontSize="13" Padding="7" Name="btnNewUser" Click="BtnNewUser_Click"/>
+        </StackPanel>
+        <DataGrid HorizontalAlignment="Left" Width="800" DockPanel.Dock="Left" Grid.RowSpan="2" Name="dataGrid" MouseDoubleClick="DataGrid_MouseDoubleClick" IsReadOnly="True"/>
+    </DockPanel>
+
+</Window>

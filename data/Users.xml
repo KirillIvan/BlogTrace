@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<Users xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <items>
+    <User>
+      <Login>kik</Login>
+      <Password>123</Password>
+      <Admin>true</Admin>
+    </User>
+    <User>
+      <Login>ДимаЛох</Login>
+      <Password>123</Password>
+      <Admin>false</Admin>
+    </User>
+  </items>
+</Users>
