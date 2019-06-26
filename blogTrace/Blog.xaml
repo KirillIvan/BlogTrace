@@ -5,12 +5,37 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:blogTrace"
         mc:Ignorable="d"
-        Title="Данные" Height="450" Width="800" Icon="logo.ico" Loaded="Window_Loaded" Closed="Window_Closed">
+        Title="Данные" Height="450" Width="800" Icon="logo.ico" Loaded="Window_Loaded" Closed="Window_Closed" ResizeMode="NoResize" Background="#FF2A3846" >
+    <Window.Resources>
+        <Style TargetType="Button" x:Key="btnStyle">
+            <Setter Property="Background" Value="#FF0266FF"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Background="{TemplateBinding Background}" BorderBrush="Black" BorderThickness="0" Padding="25,5">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#03fbed"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
     <DockPanel HorizontalAlignment="Left" Height="419" VerticalAlignment="Top" Width="790" LastChildFill="True">
-        <StackPanel DockPanel.Dock="top" HorizontalAlignment="Left">
-            <Button Content="Добавить" FontSize="13" Padding="7" Name="btnNewUser" Click="BtnNewUser_Click"/>
+        <StackPanel DockPanel.Dock="top" HorizontalAlignment="Center" Margin="0,10,0,10" Width="790">
+            <Button Content="Добавить" FontSize="25" Padding="25,5" FontFamily="Segoe Print" VerticalAlignment="Center" HorizontalAlignment="Center"  BorderThickness="0" Foreground="White" Height="50"  Name="btnNewUser" Click="BtnNewUser_Click" Style="{StaticResource btnStyle}"/>
         </StackPanel>
-        <DataGrid HorizontalAlignment="Left" Width="800" DockPanel.Dock="Left" Grid.RowSpan="2" Name="dataGrid" MouseDoubleClick="DataGrid_MouseDoubleClick" IsReadOnly="True"/>
+        <DataGrid HorizontalAlignment="Left" Width="800" DockPanel.Dock="Left" Grid.RowSpan="2" Name="dataGrid" MouseDoubleClick="DataGrid_MouseDoubleClick" IsReadOnly="True" FontSize="20" FontFamily="Segoe UI" AutoGenerateColumns="False" RowBackground="WhiteSmoke" Background="#FF2A3846" >
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Логин" Width="120" Binding="{Binding Login}" />
+                <DataGridTextColumn Header="Пароль" Width="120" Binding="{Binding Password}" x:Name="pswdColumn"/>
+                <DataGridCheckBoxColumn Header="Администратор" Binding="{Binding Admin}"/>
+            </DataGrid.Columns>
+        </DataGrid>
     </DockPanel>
 
 </Window>

@@ -5,27 +5,43 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:blogTrace"
         mc:Ignorable="d"
-        Title="Редактирование" Height="450" Width="800" ResizeMode="NoResize" Icon="logo.ico" Loaded="Window_Loaded">
+        Title="Редактирование" Height="450" Width="800" ResizeMode="NoResize" Icon="logo.ico" Loaded="Window_Loaded" Background="#FF2A3846">
+    <Window.Resources>
+        <Style TargetType="Button" x:Key="btnStyle">
+            <Setter Property="Background" Value="#FF0266FF"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Background="{TemplateBinding Background}" BorderBrush="Black" BorderThickness="0">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#03fbed"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="25*"/>
-            <RowDefinition Height="21*"/>
-            <RowDefinition Height="21*"/>
-            <RowDefinition Height="21*"/>
-            <RowDefinition Height="21*"/>
-            <RowDefinition Height="30*"/>
+            <RowDefinition Height="74*"/>
+            <RowDefinition Height="26*"/>
+            <RowDefinition Height="79*"/>
+            <RowDefinition Height="79*"/>
+            <RowDefinition Height="162*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="219*"/>
-            <ColumnDefinition Width="574*"/>
+            <ColumnDefinition Width="398*"/>
+            <ColumnDefinition Width="395*"/>
         </Grid.ColumnDefinitions>
-        <TextBlock Text="Редактирование" FontSize="35" FontFamily="Century" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="0" Grid.ColumnSpan="2" Margin="0"/>
-        <TextBlock Text="Логин:" Margin="0,16.8,1.2,17.2" VerticalAlignment="Center" HorizontalAlignment="Right" FontSize="25" FontFamily="Century" Grid.Row="1" Grid.Column="0"/>
-        <TextBox Grid.Column="1" Grid.Row="1" Margin="10,10,200,10" Name="loginBox" FontSize="30"/>
-        <TextBlock Text="Пароль:" Margin="0,15.8,1.2,16.4" VerticalAlignment="Center" HorizontalAlignment="Right" FontSize="25" FontFamily="Century" Grid.Row="2" Grid.Column="0"/>
-        <TextBox Grid.Column="1" Grid.Row="2" Margin="10,10,200,10" Name="pswdBox" FontSize="30"/>
-        <TextBlock Text="Администратор:" Margin="0,16.6,1.2,17.4" VerticalAlignment="Center" HorizontalAlignment="Right" FontSize="25" FontFamily="Century" Grid.Row="3" Grid.Column="0"/>
-        <CheckBox Grid.Row="3" VerticalAlignment="Center" Name="adminCB" Grid.Column="1" HorizontalAlignment="Left" Margin="100,0"/>
-        <Button Grid.Column="1" Grid.Row="4" Margin="10,10,300,10" Content="Сохранить" FontSize="15" FontFamily="Century" Name="saveBtn" Click="SaveBtn_Click"/>
+        <TextBlock Text="Редактирование" FontSize="30" FontFamily="Segoe Print" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10" Foreground="#FFEFF7FE"  Grid.ColumnSpan="2" Name="textTitle"/>
+        <TextBox Grid.Row="2" Text="Логин" FontSize="20" FontFamily="Segoe Print" VerticalAlignment="Center" Margin="157,20.8,156.6,20.4" Height="38" Name="loginBox" GotFocus="LoginBox_GotFocus" Background="Transparent" Foreground="#a5b1bd" BorderThickness="1" BorderBrush="#FFEFF7FE" Grid.ColumnSpan="2"/>
+        <TextBox Grid.Row="3" FontSize="20" FontFamily="Segoe Print" VerticalAlignment="Center" Name="PswdBox" HorizontalAlignment="Right" Margin="0,20.6,20.4,20.6" Height="38" Width="220" Text="Пароль" GotFocus="PswdBox_GotFocus" Background="Transparent" Foreground="#a5b1bd" BorderThickness="1" BorderBrush="#FFEFF7FE"/>
+        <CheckBox Content="Администратор" Grid.Column="1" Grid.Row="3" FontSize="20" FontFamily="Segoe Print" Foreground="#a5b1bd" VerticalAlignment="Center" VerticalContentAlignment="Center" Margin="19.6,22.6" Name="adminCB"/>
+        <Button Grid.Row="4" VerticalAlignment="Top" Content="Сохранить" FontSize="25" Padding="5" FontFamily="Segoe Print" Name="saveBtn" Click="SaveBtn_Click" Grid.ColumnSpan="2" Foreground="White" Style="{StaticResource btnStyle}" Margin="260,20" BorderThickness="0" Height="50"/>
+        <TextBlock Grid.Row="1" Text="Данные введены не корректно" Foreground="Red" FontSize="17" FontFamily="Century" VerticalAlignment="Center"  Name="error" Grid.ColumnSpan="2" Height="19" HorizontalAlignment="Center" Visibility="Hidden"/>
     </Grid>
 </Window>

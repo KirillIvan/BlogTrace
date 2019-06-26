@@ -33,7 +33,6 @@ namespace blogTrace
 
         public void BtnSignIn_Click(object sender, RoutedEventArgs e)
         {
-            //User user = new User(loginBox.Text, PswdBox.Password);
             
             
 
@@ -42,11 +41,14 @@ namespace blogTrace
                 if (item.Login == loginBox.Text && item.Password == PswdBox.Password)
                 {
                     Blog blog = new Blog();
+                    Blog.admin = item.Admin;
                     blog.Show();
                     this.Close();
-                    Blog.admin = item.Admin;
+                    
                 }
             }
+
+            error.Visibility = Visibility.Visible;
         }
 
         private void BtnReg_Click(object sender, RoutedEventArgs e)
@@ -58,7 +60,7 @@ namespace blogTrace
 
         private void Window_Closed(object sender, EventArgs e)
         {
-            using (FileStream fileStream = new FileStream(@"D:\ПапкаДляТехникума\ПрактикаWPF\blogTrace\data\Users.xml", FileMode.OpenOrCreate))
+            using (FileStream fileStream = new FileStream(@"D:\ПапкаДляТехникума\ПрактикаWPF\blogTrace\BlogTrace.git\data\Users.xml", FileMode.OpenOrCreate))
             {
                 serializer.Serialize(fileStream, users);
             }
@@ -67,12 +69,24 @@ namespace blogTrace
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             
-            using (Stream stream = File.Open(@"D:\ПапкаДляТехникума\ПрактикаWPF\blogTrace\data\Users.xml", FileMode.OpenOrCreate))
+            using (Stream stream = File.Open(@"D:\ПапкаДляТехникума\ПрактикаWPF\blogTrace\BlogTrace.git\data\Users.xml", FileMode.OpenOrCreate))
             {
                  users = ((Users)serializer.Deserialize(stream));
             }
 
 
+        }
+
+        private void LoginBox_GotFocus(object sender, RoutedEventArgs e)
+        {
+            if (loginBox.Text == "Логин")
+                loginBox.Text = "";
+        }
+
+        private void PswdBox_GotFocus(object sender, RoutedEventArgs e)
+        {
+            if (PswdBox.Password == "Логин")
+                PswdBox.Password = "";
         }
     }
 }

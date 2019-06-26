@@ -7,8 +7,18 @@
       <Admin>true</Admin>
     </User>
     <User>
-      <Login>ДимаЛох</Login>
+      <Login>neadmin</Login>
       <Password>123</Password>
+      <Admin>false</Admin>
+    </User>
+    <User>
+      <Login>Лаг</Login>
+      <Password>no</Password>
+      <Admin>true</Admin>
+    </User>
+    <User>
+      <Login>user</Login>
+      <Password>111</Password>
       <Admin>false</Admin>
     </User>
   </items>

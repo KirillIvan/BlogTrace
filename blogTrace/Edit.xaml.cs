@@ -32,25 +32,50 @@ namespace blogTrace
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            loginBox.Text = user.Login;
-            pswdBox.Text = user.Password;
-            adminCB.IsChecked = user.Admin;
+            
             if(index == -1)
             {
                 this.Title = "Добавление";
+                textTitle.Text = "Добавление";
                 saveBtn.Content = "Добавить";
+            }
+            else
+            {
+                loginBox.Text = user.Login;
+                PswdBox.Text = user.Password;
+                adminCB.IsChecked = user.Admin;
             }
         }
 
         private void SaveBtn_Click(object sender, RoutedEventArgs e)
         {
-            if (index != -1)
-                users.items[index] = new User(loginBox.Text, pswdBox.Text, adminCB.IsChecked.Value);
+            if((loginBox.Text != "Логин") && (PswdBox.Text != "Пароль") && !String.IsNullOrWhiteSpace(loginBox.Text) && !String.IsNullOrWhiteSpace(PswdBox.Text))
+            {
+                if (index != -1)
+                    users.items[index] = new User(loginBox.Text, PswdBox.Text, adminCB.IsChecked.Value);
+                else
+                    users.items.Add(new User(loginBox.Text, PswdBox.Text, adminCB.IsChecked.Value));
+                using (FileStream fileStream = new FileStream(@"D:\ПапкаДляТехникума\ПрактикаWPF\blogTrace\BlogTrace.git\data\Users.xml", FileMode.Create))
+                    serializer.Serialize(fileStream, users);
+                this.Close();
+            }
             else
-                users.items.Add(new User(loginBox.Text, pswdBox.Text, adminCB.IsChecked.Value));
-            using (FileStream fileStream = new FileStream(@"D:\ПапкаДляТехникума\ПрактикаWPF\blogTrace\data\Users.xml", FileMode.Create))
-                serializer.Serialize(fileStream, users);
-            this.Close();
+            {
+                error.Visibility = Visibility.Visible;
+            }
+        }
+
+        private void PswdBox_GotFocus(object sender, RoutedEventArgs e)
+        {
+            TextBox textBox = (TextBox)sender;
+            if (textBox.Text == "Пароль" || textBox.Text == "Повтор пароля")
+                textBox.Text = "";
+        }
+
+        private void LoginBox_GotFocus(object sender, RoutedEventArgs e)
+        {
+            if (loginBox.Text == "Логин")
+                loginBox.Text = "";
         }
     }
-}
+    }

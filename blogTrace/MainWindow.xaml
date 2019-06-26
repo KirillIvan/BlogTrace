@@ -5,21 +5,70 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:blogTrace"
         mc:Ignorable="d"
-        Title="Авторизация" Height="450" Width="800" ResizeMode="NoResize" Icon="logo.ico" Background="Gray" Closed="Window_Closed" Loaded="Window_Loaded">
+        Title="Авторизация" Height="450" Width="800" ResizeMode="NoResize" Icon="logo.ico" Background="#FF2A3846" Closed="Window_Closed" Loaded="Window_Loaded">
+    <Window.Resources>
+        <Style TargetType="Button" x:Key="btnStyle">
+            <Setter Property="Background" Value="#FF0266FF"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Background="{TemplateBinding Background}" BorderBrush="Black" BorderThickness="0">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#03fbed"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style TargetType="Button" x:Key="btnLink">
+            <Setter Property="Foreground" Value="Blue"/>
+            <Setter Property="BorderBrush" Value="Blue"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Background="{TemplateBinding Background}" BorderThickness="0,0,0,3" BorderBrush="Blue">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <Border Background="{TemplateBinding Background}" BorderThickness="0,0,0,3" BorderBrush="Red">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="113*"/>
-            <RowDefinition Height="77*"/>
-            <RowDefinition Height="77*"/>
-            <RowDefinition Height="77*"/>
-            <RowDefinition Height="35*"/>
-            <RowDefinition Height="42*"/>
+            <RowDefinition Height="12*"/>
+            <RowDefinition Height="4*"/>
+            <RowDefinition Height="11*"/>
+            <RowDefinition Height="11*"/>
+            <RowDefinition Height="11*"/>
+            <RowDefinition Height="5*"/>
+            <RowDefinition Height="6*"/>
 
         </Grid.RowDefinitions>
-        <TextBlock Text="Авторизация" FontSize="30" FontFamily="Century" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="302,38,302.6,38.8" Height="36" Width="189"/>
-        <TextBox Grid.Row="1" FontSize="30" FontFamily="Century" VerticalAlignment="Center" Margin="200,19.2,199.6,19.6" Height="38" Name="loginBox"/>
-        <PasswordBox Grid.Row="2" FontSize="30" FontFamily="Century" VerticalAlignment="Center" Margin="200,19.4,199.6,19.4" Height="38" Name="PswdBox"/>
-        <Button Content="Авторизация" FontSize="25" Padding="5" FontFamily="Century" VerticalAlignment="Center" Margin="200,13.6,199.6,13.2" Grid.Row="3" BorderBrush="WhiteSmoke" BorderThickness="5" Background="#FF1C6669" Foreground="White" Height="50" Name="btnSignIn" Click="BtnSignIn_Click"/>
-        <Button Content="Регистрация" Foreground="Blue" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" Grid.Row="4" FontStyle="Oblique" Name="btnReg" Height="32" Margin="0" Width="123" Background="Transparent" BorderThickness="0" Click="BtnReg_Click"/>
+        
+        <TextBlock Text="Авторизация"  FontSize="30" FontFamily="Segoe Print" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="292,30,290.6,1.41" Foreground="#FFEFF7FE"/>
+        <TextBox Text="Логин" Grid.Row="2" FontSize="20" FontFamily="Segoe Print" Background="Transparent" Foreground="#a5b1bd" BorderThickness="1" BorderBrush="#FFEFF7FE" VerticalAlignment="Center" Margin="200,19.2,199.6,19.6" Height="38" Name="loginBox" GotFocus="LoginBox_GotFocus"/>
+        <PasswordBox Password="Логин" Grid.Row="3" FontSize="20" FontFamily="Segoe Print" Background="Transparent" Foreground="#a5b1bd" BorderThickness="1" BorderBrush="#FFEFF7FE" VerticalAlignment="Center"  Height="38" Name="PswdBox" Margin="200,19.4,199.6,19.4" GotFocus="PswdBox_GotFocus"/>
+        <Button Content="Авторизация" FontSize="25" Padding="5" FontFamily="Segoe Print" VerticalAlignment="Center" Margin="200,13.6,199.6,13.2" Grid.Row="4" BorderThickness="0" Foreground="White" Name="btnSignIn" Click="BtnSignIn_Click" Style="{StaticResource btnStyle}"/>
+        <TextBlock Grid.Row="1" Text="Данные введены не корректно" Foreground="Red" FontSize="17" FontFamily="Century" VerticalAlignment="Center"  Name="error" Grid.ColumnSpan="2" Height="19" HorizontalAlignment="Center" Visibility="Hidden"/>
+        <Button Content="Регистрация" Foreground="Blue" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" Grid.Row="5" FontStyle="Oblique" Name="btnReg" Height="32" Margin="335,1.8,335.6,1.4" Width="123" Background="Transparent" BorderThickness="0,0,0,3" BorderBrush="Blue" Click="BtnReg_Click" Style="{StaticResource btnLink}"/>
     </Grid>
 </Window>

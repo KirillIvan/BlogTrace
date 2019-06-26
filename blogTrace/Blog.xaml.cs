@@ -28,22 +28,25 @@ namespace blogTrace
         public Blog()
         {
             InitializeComponent();
+            
         }
 
 
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            using (Stream stream = File.Open(@"D:\ПапкаДляТехникума\ПрактикаWPF\blogTrace\data\Users.xml", FileMode.OpenOrCreate))
+            using (Stream stream = File.Open(@"D:\ПапкаДляТехникума\ПрактикаWPF\blogTrace\BlogTrace.git\data\Users.xml", FileMode.OpenOrCreate))
             {
                 users = ((Users)serializer.Deserialize(stream));
             }
             dataGrid.ItemsSource = users.items;
+            if (!admin)
+                pswdColumn.Visibility = Visibility.Hidden;
         }
 
         private void Window_Closed(object sender, EventArgs e)
         {
-            using (FileStream fileStream = new FileStream(@"D:\ПапкаДляТехникума\ПрактикаWPF\blogTrace\data\Users.xml", FileMode.Create))
+            using (FileStream fileStream = new FileStream(@"D:\ПапкаДляТехникума\ПрактикаWPF\blogTrace\BlogTrace.git\data\Users.xml", FileMode.Create))
             {
                 serializer.Serialize(fileStream, users);
             }
